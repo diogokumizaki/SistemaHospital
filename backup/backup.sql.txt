@@ -1,0 +1,170 @@
+PGDMP  
+    1                 |            hospital    16.2    16.2 ,               0    0    ENCODING    ENCODING        SET client_encoding = 'UTF8';
+                      false                       0    0 
+   STDSTRINGS 
+   STDSTRINGS     (   SET standard_conforming_strings = 'on';
+                      false                       0    0 
+   SEARCHPATH 
+   SEARCHPATH     8   SELECT pg_catalog.set_config('search_path', '', false);
+                      false                       1262    16535    hospital    DATABASE        CREATE DATABASE hospital WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Portuguese_Brazil.1252';
+    DROP DATABASE hospital;
+                postgres    false            à            1259    16586    consulta    TABLE     Ç   CREATE TABLE public.consulta (
+    id_consulta integer NOT NULL,
+    id_paciente integer,
+    id_medico integer,
+    data_hora timestamp without time zone,
+    cancelamento character varying(255)
+);
+    DROP TABLE public.consulta;
+       public         heap    postgres    false            ß            1259    16585    consulta_id_consulta_seq    SEQUENCE        CREATE SEQUENCE public.consulta_id_consulta_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ /   DROP SEQUENCE public.consulta_id_consulta_seq;
+       public          postgres    false    224                       0    0    consulta_id_consulta_seq    SEQUENCE OWNED BY     U   ALTER SEQUENCE public.consulta_id_consulta_seq OWNED BY public.consulta.id_consulta;
+          public          postgres    false    223            Ø            1259    16537    endereco    TABLE       CREATE TABLE public.endereco (
+    id_endereco integer NOT NULL,
+    logradouro integer,
+    numero integer,
+    complemento character varying(255),
+    bairro character varying(255),
+    cidade character varying(255),
+    uf character(2),
+    cep integer
+);
+    DROP TABLE public.endereco;
+       public         heap    postgres    false            ×            1259    16536    endereco_id_endereco_seq    SEQUENCE        CREATE SEQUENCE public.endereco_id_endereco_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ /   DROP SEQUENCE public.endereco_id_endereco_seq;
+       public          postgres    false    216                       0    0    endereco_id_endereco_seq    SEQUENCE OWNED BY     U   ALTER SEQUENCE public.endereco_id_endereco_seq OWNED BY public.endereco.id_endereco;
+          public          postgres    false    215            Þ            1259    16572    medico    TABLE     ´   CREATE TABLE public.medico (
+    id_medico integer NOT NULL,
+    id_pessoa integer,
+    crm integer,
+    especialidade character varying(255),
+    status character varying(255)
+);
+    DROP TABLE public.medico;
+       public         heap    postgres    false            Ý            1259    16571    medico_id_medico_seq    SEQUENCE     Œ   CREATE SEQUENCE public.medico_id_medico_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ +   DROP SEQUENCE public.medico_id_medico_seq;
+       public          postgres    false    222                       0    0    medico_id_medico_seq    SEQUENCE OWNED BY     M   ALTER SEQUENCE public.medico_id_medico_seq OWNED BY public.medico.id_medico;
+          public          postgres    false    221            Ü            1259    16560    paciente    TABLE     }   CREATE TABLE public.paciente (
+    id_paciente integer NOT NULL,
+    id_pessoa integer,
+    status character varying(255)
+);
+    DROP TABLE public.paciente;
+       public         heap    postgres    false            Û            1259    16559    paciente_id_paciente_seq    SEQUENCE        CREATE SEQUENCE public.paciente_id_paciente_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ /   DROP SEQUENCE public.paciente_id_paciente_seq;
+       public          postgres    false    220                       0    0    paciente_id_paciente_seq    SEQUENCE OWNED BY     U   ALTER SEQUENCE public.paciente_id_paciente_seq OWNED BY public.paciente.id_paciente;
+          public          postgres    false    219            Ú            1259    16546    pessoa    TABLE     Â   CREATE TABLE public.pessoa (
+    id_pessoa integer NOT NULL,
+    nome character varying(255),
+    email character varying(255),
+    telefone integer,
+    cpf integer,
+    id_endereco integer
+);
+    DROP TABLE public.pessoa;
+       public         heap    postgres    false            Ù            1259    16545    pessoa_id_pessoa_seq    SEQUENCE     Œ   CREATE SEQUENCE public.pessoa_id_pessoa_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ +   DROP SEQUENCE public.pessoa_id_pessoa_seq;
+       public          postgres    false    218                       0    0    pessoa_id_pessoa_seq    SEQUENCE OWNED BY     M   ALTER SEQUENCE public.pessoa_id_pessoa_seq OWNED BY public.pessoa.id_pessoa;
+          public          postgres    false    217            h           2604    16589    consulta id_consulta     DEFAULT     |   ALTER TABLE ONLY public.consulta ALTER COLUMN id_consulta SET DEFAULT nextval('public.consulta_id_consulta_seq'::regclass);
+ C   ALTER TABLE public.consulta ALTER COLUMN id_consulta DROP DEFAULT;
+       public          postgres    false    224    223    224            d           2604    16540    endereco id_endereco     DEFAULT     |   ALTER TABLE ONLY public.endereco ALTER COLUMN id_endereco SET DEFAULT nextval('public.endereco_id_endereco_seq'::regclass);
+ C   ALTER TABLE public.endereco ALTER COLUMN id_endereco DROP DEFAULT;
+       public          postgres    false    216    215    216            g           2604    16575    medico id_medico     DEFAULT     t   ALTER TABLE ONLY public.medico ALTER COLUMN id_medico SET DEFAULT nextval('public.medico_id_medico_seq'::regclass);
+ ?   ALTER TABLE public.medico ALTER COLUMN id_medico DROP DEFAULT;
+       public          postgres    false    221    222    222            f           2604    16563    paciente id_paciente     DEFAULT     |   ALTER TABLE ONLY public.paciente ALTER COLUMN id_paciente SET DEFAULT nextval('public.paciente_id_paciente_seq'::regclass);
+ C   ALTER TABLE public.paciente ALTER COLUMN id_paciente DROP DEFAULT;
+       public          postgres    false    220    219    220            e           2604    16549    pessoa id_pessoa     DEFAULT     t   ALTER TABLE ONLY public.pessoa ALTER COLUMN id_pessoa SET DEFAULT nextval('public.pessoa_id_pessoa_seq'::regclass);
+ ?   ALTER TABLE public.pessoa ALTER COLUMN id_pessoa DROP DEFAULT;
+       public          postgres    false    217    218    218                      0    16586    consulta 
+   TABLE DATA           `   COPY public.consulta (id_consulta, id_paciente, id_medico, data_hora, cancelamento) FROM stdin;
+    public          postgres    false    224   ë2                 0    16537    endereco 
+   TABLE DATA           i   COPY public.endereco (id_endereco, logradouro, numero, complemento, bairro, cidade, uf, cep) FROM stdin;
+    public          postgres    false    216   3                 0    16572    medico 
+   TABLE DATA           R   COPY public.medico (id_medico, id_pessoa, crm, especialidade, status) FROM stdin;
+    public          postgres    false    222   %3                 0    16560    paciente 
+   TABLE DATA           B   COPY public.paciente (id_paciente, id_pessoa, status) FROM stdin;
+    public          postgres    false    220   B3       
+          0    16546    pessoa 
+   TABLE DATA           T   COPY public.pessoa (id_pessoa, nome, email, telefone, cpf, id_endereco) FROM stdin;
+    public          postgres    false    218   _3                  0    0    consulta_id_consulta_seq    SEQUENCE SET     G   SELECT pg_catalog.setval('public.consulta_id_consulta_seq', 1, false);
+          public          postgres    false    223                       0    0    endereco_id_endereco_seq    SEQUENCE SET     G   SELECT pg_catalog.setval('public.endereco_id_endereco_seq', 1, false);
+          public          postgres    false    215                       0    0    medico_id_medico_seq    SEQUENCE SET     C   SELECT pg_catalog.setval('public.medico_id_medico_seq', 1, false);
+          public          postgres    false    221                       0    0    paciente_id_paciente_seq    SEQUENCE SET     G   SELECT pg_catalog.setval('public.paciente_id_paciente_seq', 1, false);
+          public          postgres    false    219                        0    0    pessoa_id_pessoa_seq    SEQUENCE SET     C   SELECT pg_catalog.setval('public.pessoa_id_pessoa_seq', 1, false);
+          public          postgres    false    217            r           2606    16591    consulta consulta_pkey 
+   CONSTRAINT     ]   ALTER TABLE ONLY public.consulta
+    ADD CONSTRAINT consulta_pkey PRIMARY KEY (id_consulta);
+ @   ALTER TABLE ONLY public.consulta DROP CONSTRAINT consulta_pkey;
+       public            postgres    false    224            j           2606    16544    endereco endereco_pkey 
+   CONSTRAINT     ]   ALTER TABLE ONLY public.endereco
+    ADD CONSTRAINT endereco_pkey PRIMARY KEY (id_endereco);
+ @   ALTER TABLE ONLY public.endereco DROP CONSTRAINT endereco_pkey;
+       public            postgres    false    216            p           2606    16579    medico medico_pkey 
+   CONSTRAINT     W   ALTER TABLE ONLY public.medico
+    ADD CONSTRAINT medico_pkey PRIMARY KEY (id_medico);
+ <   ALTER TABLE ONLY public.medico DROP CONSTRAINT medico_pkey;
+       public            postgres    false    222            n           2606    16565    paciente paciente_pkey 
+   CONSTRAINT     ]   ALTER TABLE ONLY public.paciente
+    ADD CONSTRAINT paciente_pkey PRIMARY KEY (id_paciente);
+ @   ALTER TABLE ONLY public.paciente DROP CONSTRAINT paciente_pkey;
+       public            postgres    false    220            l           2606    16553    pessoa pessoa_pkey 
+   CONSTRAINT     W   ALTER TABLE ONLY public.pessoa
+    ADD CONSTRAINT pessoa_pkey PRIMARY KEY (id_pessoa);
+ <   ALTER TABLE ONLY public.pessoa DROP CONSTRAINT pessoa_pkey;
+       public            postgres    false    218            v           2606    16597     consulta consulta_id_medico_fkey 
+   FK CONSTRAINT     ‰   ALTER TABLE ONLY public.consulta
+    ADD CONSTRAINT consulta_id_medico_fkey FOREIGN KEY (id_medico) REFERENCES public.medico(id_medico);
+ J   ALTER TABLE ONLY public.consulta DROP CONSTRAINT consulta_id_medico_fkey;
+       public          postgres    false    4720    222    224            w           2606    16592 "   consulta consulta_id_paciente_fkey 
+   FK CONSTRAINT     ‘   ALTER TABLE ONLY public.consulta
+    ADD CONSTRAINT consulta_id_paciente_fkey FOREIGN KEY (id_paciente) REFERENCES public.paciente(id_paciente);
+ L   ALTER TABLE ONLY public.consulta DROP CONSTRAINT consulta_id_paciente_fkey;
+       public          postgres    false    224    220    4718            u           2606    16580    medico medico_id_pessoa_fkey 
+   FK CONSTRAINT     …   ALTER TABLE ONLY public.medico
+    ADD CONSTRAINT medico_id_pessoa_fkey FOREIGN KEY (id_pessoa) REFERENCES public.pessoa(id_pessoa);
+ F   ALTER TABLE ONLY public.medico DROP CONSTRAINT medico_id_pessoa_fkey;
+       public          postgres    false    4716    222    218            t           2606    16566     paciente paciente_id_pessoa_fkey 
+   FK CONSTRAINT     ‰   ALTER TABLE ONLY public.paciente
+    ADD CONSTRAINT paciente_id_pessoa_fkey FOREIGN KEY (id_pessoa) REFERENCES public.pessoa(id_pessoa);
+ J   ALTER TABLE ONLY public.paciente DROP CONSTRAINT paciente_id_pessoa_fkey;
+       public          postgres    false    4716    218    220            s           2606    16554    pessoa pessoa_id_endereco_fkey 
+   FK CONSTRAINT        ALTER TABLE ONLY public.pessoa
+    ADD CONSTRAINT pessoa_id_endereco_fkey FOREIGN KEY (id_endereco) REFERENCES public.endereco(id_endereco);
+ H   ALTER TABLE ONLY public.pessoa DROP CONSTRAINT pessoa_id_endereco_fkey;
+       public          postgres    false    218    4714    216               
+   xœ‹Ñãââ Å ©         
+   xœ‹Ñãââ Å ©         
+   xœ‹Ñãââ Å ©         
+   xœ‹Ñãââ Å ©      
+   
+   xœ‹Ñãââ Å ©     
